@@ -45,37 +45,35 @@ const PlayercontextProvider = (props) => {
 //     setPlayerstatus(true);
 //   }
 //  }
-const prev = () => {
+const prev = async() => {
   if (track.id > 0) {
     settrack(songsData[track.id - 1]);
-    audioRef.current.play();
-    setPlayerstatus(true);
+  
   }
 };
 
-const Next = () => {
+const Next = async() => {
   if (track.id < songsData.length - 1) {
-    settrack(songsData[track.id + 1]);
-    audioRef.current.play();
-    setPlayerstatus(true);
+     settrack(songsData[track.id + 1]);
+  
   }
 };
-// useEffect(() => {
-//   if (!audioRef.current) return;
+useEffect(() => {
+  if (!audioRef.current) return;
 
-//   const audio = audioRef.current;
+  const audio = audioRef.current;
 
-//   const playAudio = async () => {
-//     try {
-//       await audio.play();
-//       setPlayerstatus(true);
-//     } catch (err) {
-//       console.log("Play error:", err);
-//     }
-//   };
+  const playAudio = async () => {
+    try {
+      await audio.play();
+      setPlayerstatus(true);
+    } catch (err) {
+      console.log("Play error:", err);
+    }
+  };
 
-//   playAudio();
-// }, [track]);
+  playAudio();
+}, [track]);
   const playwithId=async(id)=>{
     await settrack(songsData[id]);
     await audioRef.current.play();
